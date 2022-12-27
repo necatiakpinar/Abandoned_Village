@@ -5,6 +5,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 AAbandonedVillagePlayer::AAbandonedVillagePlayer()
@@ -22,6 +23,13 @@ AAbandonedVillagePlayer::AAbandonedVillagePlayer()
 void AAbandonedVillagePlayer::BeginPlay()
 {
 	Super::BeginPlay();
+	FActorSpawnParameters ActorSpawnParameters = FActorSpawnParameters();
+	ActorSpawnParameters.Owner = this;
+	AGadgetItem* GadgetItem = GetWorld()->SpawnActor<AGadgetItem>(GadgetItemBP,GetActorLocation(),GetActorRotation(),ActorSpawnParameters);
+	if (GadgetItem)
+	{
+		GadgetItem->Equip();
+	}
 }
 
 void AAbandonedVillagePlayer::Tick(float DeltaTime)
@@ -32,7 +40,8 @@ void AAbandonedVillagePlayer::Tick(float DeltaTime)
 void AAbandonedVillagePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	
+
+	PlayerInputComponent->BindAction(TEXT("Jump"),IE_Pressed,this,&AAbandonedVillagePlayer::JumpAction);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"),this,&AAbandonedVillagePlayer::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"),this,&AAbandonedVillagePlayer::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"),this,&AAbandonedVillagePlayer::Turn);
@@ -65,4 +74,12 @@ void AAbandonedVillagePlayer::Turn(float Value)
 void AAbandonedVillagePlayer::LookUp(float Value)
 {
 	AddControllerPitchInput(Value);
+}
+
+void AAbandonedVillagePlayer::JumpAction()
+{
+	if (GetMovementComponent()->CanEverJump())
+	{
+		Jump();
+	}
 }
