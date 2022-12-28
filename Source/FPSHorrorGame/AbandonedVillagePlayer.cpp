@@ -29,6 +29,11 @@ void AAbandonedVillagePlayer::BeginPlay()
 	if (GadgetItem)
 	{
 		GadgetItem->Equip();
+		FAttachmentTransformRules AttachmentRules = FAttachmentTransformRules(EAttachmentRule::KeepWorld,
+			EAttachmentRule::KeepWorld,
+			EAttachmentRule::KeepWorld,
+			false);
+		GadgetItem->AttachToActor(this, AttachmentRules ,FName("Hand_R_Socket"));
 	}
 }
 

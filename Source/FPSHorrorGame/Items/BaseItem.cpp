@@ -11,11 +11,13 @@ ABaseItem::ABaseItem()
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 
+	MeshComponent->SetCollisionProfileName("NoCollision");
 	MeshComponent->SetupAttachment(BoxComponent);
 
-	SetRootComponent(BoxComponent);
-}
 
+	SetRootComponent(BoxComponent);
+
+}
 
 void ABaseItem::BeginPlay()
 {
