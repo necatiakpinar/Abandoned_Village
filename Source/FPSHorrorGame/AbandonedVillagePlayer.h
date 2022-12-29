@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "BaseGameCharacter.h"
-#include "Items/GadgetItem.h"
 #include "AbandonedVillagePlayer.generated.h"
 
 /**
@@ -23,8 +22,10 @@ public:
 	class UCameraComponent* CameraComponent;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	class TSubclassOf<AGadgetItem> GadgetItemBP;
-	
+	class TSubclassOf<class AGadgetItem> GadgetItemBP;
+
+private:
+	AGadgetItem* GadgetItem;
 public:
 	AAbandonedVillagePlayer();
 	virtual void Tick(float DeltaTime) override;
@@ -34,9 +35,9 @@ public:
 	void Turn(float Value);
 	void LookUp(float Value);
 	void JumpAction();
+	void ToggleGadget();
 	
 protected:
 	virtual void BeginPlay() override;
-	
 	
 };

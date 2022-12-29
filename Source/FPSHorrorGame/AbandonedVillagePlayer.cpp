@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Items/GadgetItem.h"
 
 AAbandonedVillagePlayer::AAbandonedVillagePlayer()
 {
@@ -25,7 +26,7 @@ void AAbandonedVillagePlayer::BeginPlay()
 	Super::BeginPlay();
 	FActorSpawnParameters ActorSpawnParameters = FActorSpawnParameters();
 	ActorSpawnParameters.Owner = this;
-	AGadgetItem* GadgetItem = GetWorld()->SpawnActor<AGadgetItem>(GadgetItemBP,GetActorLocation(),GetActorRotation(),ActorSpawnParameters);
+	GadgetItem = GetWorld()->SpawnActor<AGadgetItem>(GadgetItemBP,GetActorLocation(),GetActorRotation(),ActorSpawnParameters);
 	if (GadgetItem)
 	{
 		GadgetItem->Equip();
@@ -47,6 +48,9 @@ void AAbandonedVillagePlayer::SetupPlayerInputComponent(UInputComponent* PlayerI
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"),IE_Pressed,this,&AAbandonedVillagePlayer::JumpAction);
+	PlayerInputComponent->BindAction(TEXT("ToggleGadget"),IE_Pressed, this, &AAbandonedVillagePlayer::ToggleGadget);
+	
+	
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"),this,&AAbandonedVillagePlayer::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"),this,&AAbandonedVillagePlayer::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"),this,&AAbandonedVillagePlayer::Turn);
@@ -87,4 +91,12 @@ void AAbandonedVillagePlayer::JumpAction()
 	{
 		Jump();
 	}
+}
+
+void AAbandonedVillagePlayer::ToggleGadget()
+{
+	if (GadgetItem->IsActivated())
+		GadgetItem->DeactivateGadget();
+	else
+		GadgetItem->ActivateGadget();
 }

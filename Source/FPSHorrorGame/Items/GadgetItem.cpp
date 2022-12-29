@@ -4,6 +4,16 @@
 #include "GadgetItem.h"
 
 
+void AGadgetItem::ActivateGadget()
+{
+	isActivated = true;
+}
+
+void AGadgetItem::DeactivateGadget()
+{
+	isActivated = false;
+}
+
 void AGadgetItem::Equip()
 {
 	Super::Equip();
