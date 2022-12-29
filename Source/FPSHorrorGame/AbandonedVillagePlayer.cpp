@@ -3,6 +3,7 @@
 
 #include "AbandonedVillagePlayer.h"
 
+#include "ActorComponents/InventoryComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
@@ -20,6 +21,13 @@ AAbandonedVillagePlayer::AAbandonedVillagePlayer()
 	SprintArmComponent->TargetArmLength = 5.f;
 
 }
+
+void AAbandonedVillagePlayer::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	InventoryComponentImplemented = FindComponentByClass<UInventoryComponent>();
+}
+
 
 void AAbandonedVillagePlayer::BeginPlay()
 {
@@ -100,3 +108,4 @@ void AAbandonedVillagePlayer::ToggleGadget()
 	else
 		GadgetItem->ActivateGadget();
 }
+

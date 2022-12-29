@@ -26,6 +26,8 @@ public:
 
 private:
 	AGadgetItem* GadgetItem;
+	class UInventoryComponent* InventoryComponentImplemented; //All of the components has blueprint reference, therefore add Implemented to the end.
+
 public:
 	AAbandonedVillagePlayer();
 	virtual void Tick(float DeltaTime) override;
@@ -38,6 +40,7 @@ public:
 	void ToggleGadget();
 	
 protected:
+	virtual void PostInitializeComponents() override;
 	virtual void BeginPlay() override;
 	
 };
