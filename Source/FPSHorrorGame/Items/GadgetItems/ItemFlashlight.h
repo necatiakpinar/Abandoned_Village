@@ -15,6 +15,7 @@ class FPSHORRORGAME_API AItemFlashlight : public AGadgetItem
 	GENERATED_BODY()
 
 public:
+	AItemFlashlight();
 	virtual void Use() override;
 	void ActivateGadget() override;
 	void DeactivateGadget() override;

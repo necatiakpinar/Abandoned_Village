@@ -3,6 +3,10 @@
 
 #include "ItemFlashlight.h"
 
+AItemFlashlight::AItemFlashlight()
+{
+}
+
 void AItemFlashlight::BeginPlay()
 {
 	Super::BeginPlay();
