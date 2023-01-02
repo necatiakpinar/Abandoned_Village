@@ -38,11 +38,11 @@ void AAbandonedVillagePlayer::BeginPlay()
 	if (GadgetItem)
 	{
 		GadgetItem->Equip();
-		FAttachmentTransformRules AttachmentRules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget,
-			EAttachmentRule::SnapToTarget,
-			EAttachmentRule::KeepRelative,
-			false);
-		GadgetItem->AttachToComponent(GetMesh(), AttachmentRules ,FName("Hand_R_Socket"));
+		// FAttachmentTransformRules AttachmentRules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget,
+		// 	EAttachmentRule::SnapToTarget,
+		// 	EAttachmentRule::KeepRelative,
+		// 	false);
+		GadgetItem->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale ,FName("Hand_R_Socket"));
 	}
 }
 
