@@ -8,7 +8,7 @@ public class FPSHorrorGame : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json","JsonUtilities" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

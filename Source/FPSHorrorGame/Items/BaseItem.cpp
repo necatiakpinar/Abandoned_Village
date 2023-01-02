@@ -4,6 +4,8 @@
 #include "BaseItem.h"
 
 #include "Components/BoxComponent.h"
+#include "Engine/DataTable.h"
+#include "FPSHorrorGame/GameInstances/AbandonedVillageGameInstance.h"
 
 ABaseItem::ABaseItem()
 {
@@ -22,6 +24,13 @@ ABaseItem::ABaseItem()
 void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
+	ItemProperties = DTItemProperties->FindRow<FItemProperties>(*FString("Flashlight"),NULL);
+	if (ItemProperties)
+	{	
+		FString TableJson = DTItemProperties->GetTableAsJSON(EDataTableExportFlags::UseSimpleText);
+		UE_LOG(LogTemp, Warning, TEXT("Entered!"));
+		UE_LOG(LogTemp, Warning, TEXT("%s"),*TableJson);
+	}
 }
 
 

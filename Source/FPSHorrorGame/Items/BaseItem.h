@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FPSHorrorGame/GameInstances/AbandonedVillageGameInstance.h"
 #include "GameFramework/Actor.h"
 #include "BaseItem.generated.h"
 
@@ -14,13 +15,19 @@ class FPSHORRORGAME_API ABaseItem : public AActor
 public:	
 	ABaseItem();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UDataTable* DTItemProperties;
+
+private:
+	FItemProperties* ItemProperties;
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class UBoxComponent* BoxComponent;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class UStaticMeshComponent* MeshComponent;
-	
+
+	FORCEINLINE FItemProperties* GetItemProperties() {return ItemProperties;}
 protected:
 	virtual void BeginPlay() override;
 	

@@ -1,0 +1,12 @@
+[
+	{
+		"Name": "lokkkaa",
+		"Definition": "It illuminates envorinment",
+		"bHasCollected": false
+	},
+	{
+		"Name": "Camera",
+		"Definition": "It takes recordings.",
+		"bHasCollected": false
+	}
+]
