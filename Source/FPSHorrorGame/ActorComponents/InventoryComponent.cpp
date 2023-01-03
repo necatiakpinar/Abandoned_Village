@@ -12,14 +12,21 @@ UInventoryComponent::UInventoryComponent()
 
 }
 
+void UInventoryComponent::OnRegister()
+{
+	Super::OnRegister();
+#if PLATFORM_WINDOWS
+	UE_LOG(LogTemp, Warning, TEXT("ON REGISTER WORKED!"));
+#endif
+	
+	//SaveToJson();
+	
+}
 
 void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	//SaveToJson();
-	LoadFromJson();
 }
-
 
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {

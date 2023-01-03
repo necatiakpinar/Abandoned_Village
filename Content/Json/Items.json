@@ -1,12 +1,17 @@
 [
 	{
-		"Name": "lokkkaa",
-		"Definition": "It illuminates envorinment",
+		"Name": "Flashlight",
+		"Definition": "It illuminates the environment",
 		"bHasCollected": false
 	},
 	{
 		"Name": "Camera",
 		"Definition": "It takes recordings.",
 		"bHasCollected": false
+	},
+	{
+		"Name": "NewRow",
+		"Definition": "Test2",
+		"bHasCollected": true
 	}
 ]

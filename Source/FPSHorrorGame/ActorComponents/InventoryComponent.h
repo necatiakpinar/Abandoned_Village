@@ -18,8 +18,9 @@ public:
 	class UDataTable* DTItems;
 
 protected:
+	virtual void OnRegister() override;
 	virtual void BeginPlay() override;
-
+	
 public:	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
