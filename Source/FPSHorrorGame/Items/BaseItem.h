@@ -3,9 +3,31 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FPSHorrorGame/GameInstances/AbandonedVillageGameInstance.h"
+#include "FPSHorrorGame/Enums/InventoryEnums.h"
+#include "FPSHorrorGame/Subsystems/AVFileOperations.h"
 #include "GameFramework/Actor.h"
 #include "BaseItem.generated.h"
+
+
+USTRUCT(BlueprintType)
+struct FItemProperties : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EItemTypes ItemType;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Definition;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bHasCollected;
+
+	
+};
 
 UCLASS()
 class FPSHORRORGAME_API ABaseItem : public AActor
@@ -15,6 +37,9 @@ class FPSHORRORGAME_API ABaseItem : public AActor
 public:	
 	ABaseItem();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EItemTypes ItemType;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UDataTable* DTItemProperties;
 

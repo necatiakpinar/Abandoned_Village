@@ -3,3 +3,10 @@
 
 #include "AbandonedVillageGameInstance.h"
 
+#include "FPSHorrorGame/Subsystems/AVFileOperations.h"
+#include "Kismet/GameplayStatics.h"
+
+void UAbandonedVillageGameInstance::Init()
+{
+	Super::Init();
+}

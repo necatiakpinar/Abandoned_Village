@@ -1,23 +1,20 @@
  {"AllItems": [
 	{
 		"Name": "Flashlight",
+		"ItemType": "IT_Flashlight",
 		"Definition": "It illuminates the environment",
-		"bHasCollected": false,
-		"itemMesh": "None",
-		"Test": ""
+		"bHasCollected": false
 	},
 	{
 		"Name": "Camera",
+		"ItemType": "IT_Camera",
 		"Definition": "It takes recordings.",
-		"bHasCollected": false,
-		"itemMesh": "None",
-		"Test": ""
+		"bHasCollected": false
 	},
 	{
 		"Name": "NewRow",
-		"Definition": "Test2",
-		"bHasCollected": true,
-		"itemMesh": "None",
-		"Test": ""
+		"ItemType": "IT_Flashlight",
+		"Definition": "ASDFADSFAS",
+		"bHasCollected": false
 	}
 ] } 

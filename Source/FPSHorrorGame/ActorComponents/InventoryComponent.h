@@ -14,15 +14,10 @@ class FPSHORRORGAME_API UInventoryComponent : public UActorComponent
 
 public:	
 	UInventoryComponent();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UDataTable* DTItems;
 
 protected:
 	virtual void BeginPlay() override;
 	
 public:	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-	void SaveToJson();
-	void LoadFromJson();
 };

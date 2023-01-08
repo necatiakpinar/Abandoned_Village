@@ -7,27 +7,6 @@
 #include "Engine/GameInstance.h"
 #include "AbandonedVillageGameInstance.generated.h"
 
-USTRUCT(BlueprintType)
-struct FItemProperties : public FTableRowBase
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString Name;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString Definition;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bHasCollected;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UStaticMesh* itemMesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString Test;
-	
-};
 
 /**
  * 
@@ -37,4 +16,7 @@ class FPSHORRORGAME_API UAbandonedVillageGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 	
+
+public:
+	virtual void Init() override;
 };

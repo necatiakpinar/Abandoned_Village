@@ -5,12 +5,9 @@
 #include "Engine/DataTable.h"
 #include "JsonObjectConverter.h"
 #include "FPSHorrorGame/GameInstances/AbandonedVillageGameInstance.h"
-
-
-const static FString ITEMS_JSON_PATH = "/Json/Items.json";
-const static FString ITEMS_JSON_STARTER = " {\"AllItems\": ";;
-const static FString ITEMS_JSON_END = " } ";
-const static FString ITEMS_JSON_ALL_ITEMS_NAME = "AllItems";
+#include "FPSHorrorGame/Subsystems/AVFileOperations.h"
+#include "FPSHorrorGame/Subsystems/UnitTestSubSystem.h"
+#include "Kismet/GameplayStatics.h"
 
 UInventoryComponent::UInventoryComponent()
 {
@@ -20,60 +17,23 @@ UInventoryComponent::UInventoryComponent()
 void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	SaveToJson();
-	LoadFromJson();
+
+	UAVFileOperations* FileOperations;
+	if (GetWorld()->GetGameInstance())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Game Instance available!"));
+		FileOperations = Cast<UAVFileOperations>(GetWorld()->GetGameInstance()->GetSubsystem<UAVFileOperations>());
+		if (FileOperations)
+		{
+			FileOperations->SaveToJson();
+			FileOperations->LoadFromJson();
+		}
+
+	}
+		
 }
 
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
-void UInventoryComponent::SaveToJson()
-{
-	if (DTItems)
-	{
-		FString ItemsInJsonFormat = DTItems->GetTableAsJSON(EDataTableExportFlags::UseSimpleText);
-		FString JsonCombined;
-		
-		JsonCombined.Append(ITEMS_JSON_STARTER);
-		JsonCombined.Append(ItemsInJsonFormat);
-		JsonCombined.Append(ITEMS_JSON_END);
-		FFileHelper::SaveStringToFile(*JsonCombined,*(FPaths::ProjectContentDir() + ITEMS_JSON_PATH));
-	}
-}
-
-void UInventoryComponent::LoadFromJson()
-{
-	FString ItemsInJsonFormat;
-	FFileHelper::LoadFileToString(ItemsInJsonFormat, *(FPaths::ProjectContentDir() + ITEMS_JSON_PATH));
-	
-	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(ItemsInJsonFormat);
-	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
-	
-	if (FJsonSerializer::Deserialize(Reader, Data) &&  Data.IsValid())
-	{
-		TArray<TSharedPtr<FJsonValue>> JsonValueArray = Data->GetArrayField(ITEMS_JSON_ALL_ITEMS_NAME);
-		if (JsonValueArray.Num() > 0)
-		{
-			for(int32 i = 0; i < JsonValueArray.Num(); i++)
-			{
-				TSharedPtr<FJsonValue> JsonValue = JsonValueArray[i];
-				TSharedPtr<FJsonObject> JsonValueObject = JsonValue->AsObject();
-				FItemProperties ItemProperties;
-				
-				ItemProperties.Name = JsonValueObject->GetStringField(TEXT("Name"));
-				ItemProperties.Definition = JsonValueObject->GetStringField(TEXT("Definition"));
-				ItemProperties.bHasCollected = JsonValueObject->GetBoolField(TEXT("bHasCollected"));
-
-				UE_LOG(LogTemp, Warning, TEXT("%s"), *ItemProperties.Definition);
-			}
-		}
-		
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *ItemsInJsonFormat)
-	}
-	
 }

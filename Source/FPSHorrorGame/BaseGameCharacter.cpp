@@ -3,6 +3,9 @@
 
 #include "BaseGameCharacter.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Subsystems/AVFileOperations.h"
+
 // Sets default values
 ABaseGameCharacter::ABaseGameCharacter()
 {
@@ -15,7 +18,6 @@ ABaseGameCharacter::ABaseGameCharacter()
 void ABaseGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
