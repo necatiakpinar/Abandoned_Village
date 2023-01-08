@@ -20,6 +20,12 @@ struct FItemProperties : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bHasCollected;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMesh* itemMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Test;
 	
 };
 

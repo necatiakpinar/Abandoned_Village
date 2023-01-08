@@ -1,17 +1,23 @@
-[
+ {"AllItems": [
 	{
 		"Name": "Flashlight",
 		"Definition": "It illuminates the environment",
-		"bHasCollected": false
+		"bHasCollected": false,
+		"itemMesh": "None",
+		"Test": ""
 	},
 	{
 		"Name": "Camera",
 		"Definition": "It takes recordings.",
-		"bHasCollected": false
+		"bHasCollected": false,
+		"itemMesh": "None",
+		"Test": ""
 	},
 	{
 		"Name": "NewRow",
 		"Definition": "Test2",
-		"bHasCollected": true
+		"bHasCollected": true,
+		"itemMesh": "None",
+		"Test": ""
 	}
-]
+] } 

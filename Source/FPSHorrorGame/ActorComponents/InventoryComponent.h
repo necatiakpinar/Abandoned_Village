@@ -18,7 +18,6 @@ public:
 	class UDataTable* DTItems;
 
 protected:
-	virtual void OnRegister() override;
 	virtual void BeginPlay() override;
 	
 public:	
