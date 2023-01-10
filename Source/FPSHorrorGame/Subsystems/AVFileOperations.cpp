@@ -4,6 +4,7 @@
 #include "AVFileOperations.h"
 #include "Engine/DataTable.h"
 #include "FPSHorrorGame/Items/BaseItem.h"
+#include "CoreTypes.h"
 
 const static FString ITEMS_JSON_PATH = "/Json/Items.json";
 const static FString ITEMS_JSON_STARTER = " {\"AllItems\": ";;
@@ -79,8 +80,9 @@ void UAVFileOperations::LoadFromJson() const
 				ItemProperties.Name = JsonValueObject->GetStringField(TEXT("Name"));
 				ItemProperties.Definition = JsonValueObject->GetStringField(TEXT("Definition"));
 				ItemProperties.bHasCollected = JsonValueObject->GetBoolField(TEXT("bHasCollected"));
+				ItemProperties.ItemType = StringToEnumItemConversation[JsonValueObject->GetStringField(TEXT("ItemType"))];
 
-				UE_LOG(LogTemp, Warning, TEXT("%s"), *ItemProperties.Definition);
+				UE_LOG(LogTemp, Warning, TEXT("%s"), *UEnum::GetValueAsString(ItemProperties.ItemType));
 			}
 		}
 	}

@@ -5,10 +5,8 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "CoreTypes.h"
 #include "AVFileOperations.generated.h"
-
-
-
 
 /**
  * 
@@ -19,8 +17,9 @@ class FPSHORRORGAME_API UAVFileOperations : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 private:
-	TSoftClassPtr<class UDataTable> DTItemsSoft;
 	UDataTable* DTItems;
+	//TArray<class FItemProperties> AllItemProperties;
+	//TArray<uint8> numberArr;
 
 public:
 	UAVFileOperations();

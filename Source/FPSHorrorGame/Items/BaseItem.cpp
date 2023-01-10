@@ -24,8 +24,7 @@ ABaseItem::ABaseItem()
 
 void ABaseItem::BeginPlay()
 {
-	Super::BeginPlay()
-
+	Super::BeginPlay();
 }
 
 

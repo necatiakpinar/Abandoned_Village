@@ -25,7 +25,6 @@ struct FItemProperties : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bHasCollected;
-
 	
 };
 

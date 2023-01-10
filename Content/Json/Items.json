@@ -13,8 +13,8 @@
 	},
 	{
 		"Name": "NewRow",
-		"ItemType": "IT_Flashlight",
-		"Definition": "ASDFADSFAS",
+		"ItemType": "IT_Battery",
+		"Definition": "It increases life of a camera",
 		"bHasCollected": false
 	}
 ] } 
