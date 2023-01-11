@@ -5,6 +5,7 @@
 #include "Engine/DataTable.h"
 #include "FPSHorrorGame/Items/BaseItem.h"
 #include "CoreTypes.h"
+#include "FPSHorrorGame/Enums/InventoryEnums.h"
 
 const static FString ITEMS_JSON_PATH = "/Json/Items.json";
 const static FString ITEMS_JSON_STARTER = " {\"AllItems\": ";;
@@ -30,20 +31,7 @@ void UAVFileOperations::Deinitialize()
 	
 }
 
-void UAVFileOperations::Test()
-{
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			15.f,
-			FColor::Red,
-			FString(TEXT("Subsystem func is working!"))
-		);
-	}
-}
-
-void UAVFileOperations::SaveToJson() const
+void UAVFileOperations::SaveItemToJson()
 {
 	if (DTItems)
 	{
@@ -58,11 +46,11 @@ void UAVFileOperations::SaveToJson() const
 	}
 }
 
-void UAVFileOperations::LoadFromJson() const
+void UAVFileOperations::LoadItemsFromJson()
 {
 	FString ItemsInJsonFormat;
 	FFileHelper::LoadFileToString(ItemsInJsonFormat, *(FPaths::ProjectContentDir() + ITEMS_JSON_PATH));
-	
+
 	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(ItemsInJsonFormat);
 	TSharedPtr<FJsonObject> Data = MakeShareable(new FJsonObject());
 	
@@ -82,8 +70,24 @@ void UAVFileOperations::LoadFromJson() const
 				ItemProperties.bHasCollected = JsonValueObject->GetBoolField(TEXT("bHasCollected"));
 				ItemProperties.ItemType = StringToEnumItemConversation[JsonValueObject->GetStringField(TEXT("ItemType"))];
 
-				UE_LOG(LogTemp, Warning, TEXT("%s"), *UEnum::GetValueAsString(ItemProperties.ItemType));
+				AllItemProperties.Add(ItemProperties);
+				//UE_LOG(LogTemp, Warning, TEXT("%s"), *UEnum::GetValueAsString(ItemProperties.ItemType));
 			}
 		}
 	}
+}
+
+FItemProperties UAVFileOperations::GetItemProperties(EItemTypes itemType)
+{
+	FItemProperties ItemProperties;
+	for (uint8 i = 0; i < AllItemProperties.Num(); i++)
+	{
+		if (itemType == AllItemProperties[i].ItemType)
+		{
+			ItemProperties = AllItemProperties[i];
+			return AllItemProperties[i];
+		}
+	}
+	
+	return ItemProperties;
 }

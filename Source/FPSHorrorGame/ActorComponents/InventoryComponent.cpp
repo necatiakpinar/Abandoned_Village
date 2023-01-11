@@ -25,11 +25,12 @@ void UInventoryComponent::BeginPlay()
 		FileOperations = Cast<UAVFileOperations>(GetWorld()->GetGameInstance()->GetSubsystem<UAVFileOperations>());
 		if (FileOperations)
 		{
-			FileOperations->SaveToJson();
-			FileOperations->LoadFromJson();
+			FileOperations->SaveItemToJson();
+			FileOperations->LoadItemsFromJson();
 		}
-
+		
 	}
+	
 		
 }
 

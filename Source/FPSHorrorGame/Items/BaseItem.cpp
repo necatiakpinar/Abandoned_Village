@@ -7,6 +7,7 @@
 #include "Components/BoxComponent.h"
 #include "Engine/DataTable.h"
 #include "FPSHorrorGame/GameInstances/AbandonedVillageGameInstance.h"
+#include "FPSHorrorGame/Subsystems/AVFileOperations.h"
 #include "Kismet/GameplayStatics.h"
 
 ABaseItem::ABaseItem()
@@ -25,6 +26,19 @@ ABaseItem::ABaseItem()
 void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
+	SetItemProperties();
+	
+}
+
+void ABaseItem::SetItemProperties()
+{
+	UAVFileOperations* FileOperations;
+	if (GetWorld()->GetGameInstance())
+	{
+		FileOperations = Cast<UAVFileOperations>(GetWorld()->GetGameInstance()->GetSubsystem<UAVFileOperations>());
+		if (FileOperations)
+			ItemProperties = FileOperations->GetItemProperties(ItemType);
+	}
 }
 
 

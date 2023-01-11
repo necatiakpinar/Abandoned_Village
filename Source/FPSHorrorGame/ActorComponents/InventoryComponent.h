@@ -15,6 +15,7 @@ class FPSHORRORGAME_API UInventoryComponent : public UActorComponent
 public:	
 	UInventoryComponent();
 
+
 protected:
 	virtual void BeginPlay() override;
 	

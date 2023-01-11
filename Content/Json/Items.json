@@ -12,7 +12,7 @@
 		"bHasCollected": false
 	},
 	{
-		"Name": "NewRow",
+		"Name": "Battery",
 		"ItemType": "IT_Battery",
 		"Definition": "It increases life of a camera",
 		"bHasCollected": false

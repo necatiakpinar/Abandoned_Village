@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "FPSHorrorGame/Enums/InventoryEnums.h"
-#include "FPSHorrorGame/Subsystems/AVFileOperations.h"
+#include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
 #include "BaseItem.generated.h"
 
@@ -39,11 +39,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemTypes ItemType;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UDataTable* DTItemProperties;
 
 private:
-	FItemProperties* ItemProperties;
+	FItemProperties ItemProperties;
+	UDataTable* DTItemProperties;
+	
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class UBoxComponent* BoxComponent;
@@ -51,8 +51,10 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class UStaticMeshComponent* MeshComponent;
 
-	FORCEINLINE FItemProperties* GetItemProperties() {return ItemProperties;}
+	FORCEINLINE FItemProperties GetItemProperties() {return ItemProperties;}
 protected:
 	virtual void BeginPlay() override;
-	
+
+private:
+	void SetItemProperties();
 };
