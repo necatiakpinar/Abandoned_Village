@@ -28,10 +28,7 @@ void UInventoryComponent::BeginPlay()
 			FileOperations->SaveItemToJson();
 			FileOperations->LoadItemsFromJson();
 		}
-		
 	}
-	
-		
 }
 
 void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
