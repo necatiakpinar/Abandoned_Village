@@ -17,9 +17,6 @@ AAbandonedVillagePlayer::AAbandonedVillagePlayer()
 	
 	SprintArmComponent->SetupAttachment(GetCapsuleComponent());
 	CameraComponent->SetupAttachment(SprintArmComponent);
-
-	SprintArmComponent->TargetArmLength = 5.f;
-
 }
 
 void AAbandonedVillagePlayer::PostInitializeComponents()
@@ -32,6 +29,8 @@ void AAbandonedVillagePlayer::PostInitializeComponents()
 void AAbandonedVillagePlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 	FActorSpawnParameters ActorSpawnParameters = FActorSpawnParameters();
 	ActorSpawnParameters.Owner = this;
 	GadgetItem = GetWorld()->SpawnActor<AGadgetItem>(GadgetItemBP,GetActorLocation(),GetActorRotation(),ActorSpawnParameters);
@@ -44,6 +43,8 @@ void AAbandonedVillagePlayer::BeginPlay()
 		// 	false);
 		GadgetItem->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale ,FName("Hand_R_Socket"));
 	}
+
+	SetPlayerCamera(PlayerCameraType);
 }
 
 void AAbandonedVillagePlayer::Tick(float DeltaTime)
@@ -107,5 +108,26 @@ void AAbandonedVillagePlayer::ToggleGadget()
 		GadgetItem->DeactivateGadget();
 	else
 		GadgetItem->ActivateGadget();
+}
+
+void AAbandonedVillagePlayer::SetPlayerCamera(EPlayerCameraType NewCameraType)
+{
+	if (SprintArmComponent == nullptr)
+		return;
+	
+	switch (NewCameraType)
+	{
+		case EPlayerCameraType::IT_FPS:
+			SprintArmComponent->TargetArmLength = TargetArmLengthFPSValue;		
+		break;
+	
+		case EPlayerCameraType::IT_TPS:
+			SprintArmComponent->TargetArmLength = TargetArmLengthTPSValue;
+		break;
+	
+		default:
+		break;
+	}
+	
 }
 

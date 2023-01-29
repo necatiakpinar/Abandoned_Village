@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "BaseGameCharacter.h"
+#include "FPSHorrorGame/Enums/InventoryEnums.h"
 #include "AbandonedVillagePlayer.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class FPSHORRORGAME_API AAbandonedVillagePlayer : public ABaseGameCharacter
 {
@@ -24,6 +23,15 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class TSubclassOf<class AGadgetItem> GadgetItemBP;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float TargetArmLengthTPSValue;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float TargetArmLengthFPSValue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TEnumAsByte<EPlayerCameraType> PlayerCameraType;
+
 private:
 	AGadgetItem* GadgetItem;
 	class UInventoryComponent* InventoryComponentImplemented; //All of the components has blueprint reference, therefore add Implemented to the end.
@@ -38,6 +46,9 @@ public:
 	void LookUp(float Value);
 	void JumpAction();
 	void ToggleGadget();
+
+	UFUNCTION(BlueprintCallable)
+	void SetPlayerCamera(EPlayerCameraType NewCameraType);
 	
 protected:
 	virtual void PostInitializeComponents() override;

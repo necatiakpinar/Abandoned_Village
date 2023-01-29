@@ -37,11 +37,7 @@ void ABaseItem::SetItemProperties()
 	{
 		FileOperations = Cast<UAVFileOperations>(GetWorld()->GetGameInstance()->GetSubsystem<UAVFileOperations>());
 		if (FileOperations)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Item properties are setted."))
 			ItemProperties = FileOperations->GetItemProperties(ItemType);
-			UE_LOG(LogTemp, Warning, TEXT("%s"),*ItemProperties.Definition);
-		}
 	}
 }
 

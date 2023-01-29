@@ -42,7 +42,6 @@ public:
 
 private:
 	FItemProperties ItemProperties;
-	UDataTable* DTItemProperties;
 	
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)

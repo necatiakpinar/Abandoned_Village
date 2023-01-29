@@ -18,3 +18,12 @@ inline TMap<FString,EItemTypes> StringToEnumItemConversation =
 		{"IT_Battery",EItemTypes::IT_Battery}
 	};
 
+
+UENUM(BlueprintType)
+enum class EPlayerCameraType  : uint8
+{
+	IT_FPS UMETA(DisplayName = "Fps"),
+	IT_TPS UMETA(DisplayName = "Tps"),
+	
+	IT_MAX UMETA(DisplayName  = "DefaultMAX")
+};
