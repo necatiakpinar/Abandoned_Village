@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/Character.h"
 #include "BaseGameCharacter.h"
 #include "FPSHorrorGame/Enums/InventoryEnums.h"
 #include "AbandonedVillagePlayer.generated.h"
@@ -53,5 +54,5 @@ public:
 protected:
 	virtual void PostInitializeComponents() override;
 	virtual void BeginPlay() override;
-	
+
 };

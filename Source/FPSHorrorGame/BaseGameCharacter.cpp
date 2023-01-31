@@ -24,13 +24,13 @@ void ABaseGameCharacter::BeginPlay()
 void ABaseGameCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-// Called to bind functionality to input
-void ABaseGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ABaseGameCharacter::TakeDamage(int DamageAmount)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	Health -= DamageAmount;
+	if (Health <= 0)
+		Destroy();
 }
+
 

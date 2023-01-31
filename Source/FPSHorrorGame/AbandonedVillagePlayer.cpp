@@ -9,6 +9,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Items/GadgetItem.h"
+#include "Kismet/GameplayStatics.h"
 
 AAbandonedVillagePlayer::AAbandonedVillagePlayer()
 {
