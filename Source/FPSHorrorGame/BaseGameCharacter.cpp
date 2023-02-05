@@ -31,6 +31,7 @@ void ABaseGameCharacter::TakeDamage(int DamageAmount)
 	Health -= DamageAmount;
 	if (Health <= 0)
 		Destroy();
+	
 }
 
 
