@@ -12,6 +12,7 @@ class FPSHORRORGAME_API AGadgetItem : public AEquippableItem
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool IsActivated() { return isActivated;}
 private:
 	bool isActivated;

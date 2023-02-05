@@ -4,17 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Interfaces/Damagable.h"
 #include "BaseGameCharacter.generated.h"
 
 UCLASS()
-class FPSHORRORGAME_API ABaseGameCharacter : public ACharacter
+class FPSHORRORGAME_API ABaseGameCharacter : public ACharacter, public IDamagable
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Health;
-	
+	float Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float AttackSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float AttackPower;
+
+private:
+	bool CanAttack;
+	FTimerHandle CombatTimerHandle;
 public:
 	// Sets default values for this character's properties
 	ABaseGameCharacter();
@@ -30,5 +38,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
-	virtual void TakeDamage(int DamageAmount);
+	virtual void TakeDamage(float DamageAmount) override;
+	UFUNCTION(BlueprintCallable)
+    virtual void Attack(AActor* TargetEntity);
+private:
+	void EnableCombat();
 };

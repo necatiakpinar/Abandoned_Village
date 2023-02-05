@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TEnumAsByte<EPlayerCameraType> PlayerCameraType;
 
+public:
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE AGadgetItem* GetActiveGadget() {return GadgetItem;}
 private:
 	AGadgetItem* GadgetItem;
 	class UInventoryComponent* InventoryComponentImplemented; //All of the components has blueprint reference, therefore add Implemented to the end.
